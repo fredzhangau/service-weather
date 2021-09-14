@@ -1,5 +1,7 @@
 ![CI/CD](https://github.com/myco001/service-weather/workflows/CI/CD/badge.svg)
 
+🚀 [**View Live Site Here**](https://myco001.github.io/service-weather/) 🚀
+
 # 1. Build and Run the Code
 
 **_Service Weather_** was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
