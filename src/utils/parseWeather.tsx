@@ -23,12 +23,12 @@ export const parseCurrent = (
       lon: data.coord.lon,
     };
     const weatherData: IWeather = {
-      description: data.weather[0].main,
-      icon: `${ICON_BASE_URL}${data.weather[0].icon}@2x.png`,
+      description: data.weather[0].main ?? "-",
+      icon: `${ICON_BASE_URL}${data.weather[0].icon}@2x.png` ?? defaultIcon,
     };
     const windData: IWind = {
-      speed: data.wind.speed + "m/s",
-      gust: data.wind.gust + "m/s",
+      speed: (data.wind.speed ?? "-") + "m/s",
+      gust: (data.wind.gust ?? "-") + "m/s",
     };
 
     const dateObj = new Date(data.dt * 1000);
@@ -37,15 +37,15 @@ export const parseCurrent = (
     const currentData: ICurrent = {
       city: city,
       coord: coord,
-      clouds: data.clouds.all + "%",
-      feelsLike: parseFloat(data.main.feels_like).toFixed(1) + "°C",
-      temp: parseFloat(data.main.temp).toFixed(1) + "°C",
-      humidity: data.main.humidity + "%",
-      pressure: data.main.pressure + "hPa",
+      clouds: (data.clouds.all ?? "-") + "%",
+      feelsLike: (parseFloat(data.main.feels_like).toFixed(1) ?? "-") + "°C",
+      temp: (parseFloat(data.main.temp).toFixed(1) ?? "-") + "°C",
+      humidity: (data.main.humidity ?? "-") + "%",
+      pressure: (data.main.pressure ?? "-") + "hPa",
       rain: ((data.rain && data.rain["1h"]) || "0") + "mm",
       time: readableDate,
       timeZone: parseTimeZone(Intl.DateTimeFormat().resolvedOptions().timeZone),
-      visibility: data.visibility + "m",
+      visibility: (data.visibility ?? "-") + "m",
       weather: weatherData,
       wind: windData,
     };
@@ -84,17 +84,17 @@ export const parseForecast = (response: AxiosResponse<any>): IForecast => {
 
   const todayWeather: IWeather = {
     description: firstDay.weather[0].description,
-    icon: `${ICON_BASE_URL}${firstDay.weather[0].icon}@2x.png`,
+    icon: `${ICON_BASE_URL}${firstDay.weather[0].icon}@2x.png` ?? defaultIcon,
   };
 
   const today: IDaily = {
-    dewPoint: parseFloat(data.current.dew_point).toFixed(1) + "°C",
-    rain: (firstDay.rain || "0") + "mm",
-    sunrise: parseToLocalTime(firstDay.sunrise, data.timeZone),
-    sunset: parseToLocalTime(firstDay.sunset, data.timeZone),
-    tempMax: parseFloat(firstDay.temp.max).toFixed(1) + "°C",
-    tempMin: parseFloat(firstDay.temp.min).toFixed(1) + "°C",
-    uvi: firstDay.uvi,
+    dewPoint: (parseFloat(data.current.dew_point).toFixed(1) ?? "-") + "°C",
+    rain: (firstDay.rain ?? "0") + "mm",
+    sunrise: parseToLocalTime(firstDay.sunrise, data.timeZone) ?? "-",
+    sunset: parseToLocalTime(firstDay.sunset, data.timeZone) ?? "-",
+    tempMax: (parseFloat(firstDay.temp.max).toFixed(1) ?? "-") + "°C",
+    tempMin: (parseFloat(firstDay.temp.min).toFixed(1) ?? "-") + "°C",
+    uvi: firstDay.uvi ?? "-",
     weather: todayWeather,
   };
 
