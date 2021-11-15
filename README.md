@@ -1,6 +1,6 @@
 ![CI/CD](https://github.com/myco001/service-weather/workflows/CI/CD/badge.svg)
 
-🚀 [**View Live Site Here**](https://myco001.github.io/service-weather/) 🚀
+🚀 [**View Live Site Here**](https://fredzhangau.github.io/service-weather/) 🚀
 
 # 1. Build and Run the Code
 
